@@ -1,0 +1,39 @@
+<!-- PayPal import -->
+<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+
+<!-- Target element -->
+<div id="paypal-button">Hello World</div>
+
+<!-- Render button -->
+<script>
+    paypal.Button.render({
+        env: 'sandbox',
+        //env: 'production',
+
+        // Display a "Pay Now" button rather than a "Continue" button
+        commit: true,
+
+        // Pass the client ids to use to create your transaction on sandbox and production environments
+        client: {
+            sandbox: 'xxxx',
+            production: 'xxxx'
+
+        },
+
+        // Pass the payment details for your transaction
+        payment: function(data, actions) {
+            console.log('The payment was created!');
+        },
+
+        // Pass a function to be called when the customer authorizes the payment
+        onAuthorize: function(data, actions) {
+            console.log('The payment was authorized!');
+        },
+
+        // Pass a function to be called when the customer cancels the payment
+        onCancel: function(data) {
+            console.log('The payment was cancelled!');
+        }
+
+    }, '#paypal-button');
+</script>
